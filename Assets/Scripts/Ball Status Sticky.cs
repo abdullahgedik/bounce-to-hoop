@@ -57,7 +57,7 @@ public class BallStatusSticky : MonoBehaviour
         if (isSticky)
         {
             rb.gravityScale = 0;
-            rb.velocity = new Vector2(0, 0);
+            rb.linearVelocity = new Vector2(0, 0);
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }

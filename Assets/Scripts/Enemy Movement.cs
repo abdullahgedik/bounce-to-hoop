@@ -27,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (!isDead)
-            rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
     }
 
     IEnumerator ChangeDirection()
@@ -48,6 +48,6 @@ public class EnemyMovement : MonoBehaviour
     public void DeathStatus()
     {
         isDead = true;
-        rb.velocity = new Vector2 (0,0);
+        rb.linearVelocity = new Vector2 (0,0);
     }
 }

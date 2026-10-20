@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "trijam-game.sln"
+    "dotnet.defaultSolution": "bounce-to-hoop.slnx"
 }
