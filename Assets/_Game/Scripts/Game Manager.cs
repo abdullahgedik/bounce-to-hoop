@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +12,12 @@ public class GameManager : MonoBehaviour
 
     private bool isGamePaused = false;
     private bool playerIsDead = false;
+    private InputAction pauseAction;
+
+    void Awake()
+    {
+        pauseAction = InputSystem.actions.FindAction("Gameplay/Pause");
+    }
 
     private void Start()
     {
@@ -21,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (pauseAction.WasPressedThisFrame())
         {
             PauseGame();
         }

@@ -1,6 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class BallMovement : MonoBehaviour
@@ -18,16 +17,26 @@ public class BallMovement : MonoBehaviour
     private bool isThrowable = true;
     private Camera cam;
     private bool isDragging;
+    private InputAction throwAction;
+    private InputAction pointAction;
+
 
     Vector3 MousePosition
     {
         get
         {
-            Vector3 pos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 pos = cam.ScreenToWorldPoint(pointAction.ReadValue<Vector2>());
             pos.z = 0f;
             return pos;
         }
     }
+
+    void Awake()
+    {
+        throwAction = InputSystem.actions.FindAction("Gameplay/Throw");
+        pointAction = InputSystem.actions.FindAction("Gameplay/Point");
+    }
+
 
     void Start()
     {
@@ -40,7 +49,7 @@ public class BallMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isDragging && isThrowable && !isGamePaused)
+        if (throwAction.WasPressedThisFrame() && !isDragging && isThrowable && !isGamePaused)
         {
             DragStart();
         }
@@ -48,7 +57,7 @@ public class BallMovement : MonoBehaviour
         if (isDragging)
             Drag();
 
-        if (Input.GetMouseButtonUp(0) && isDragging)
+        if (throwAction.WasReleasedThisFrame() && isDragging)
         {
             DragEnd();
             StartCoroutine(ThrowTimer());
