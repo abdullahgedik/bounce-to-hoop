@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
+    public event Action OnThrow;
+
     [Header("References")]
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private LineRenderer _line;
@@ -109,6 +112,7 @@ public class BallMovement : MonoBehaviour
         Vector3 distance = currentPos - startPos;
         Vector3 finalForce = distance * _forceToAdd;
 
+        OnThrow?.Invoke();
         _rb.AddForce(-finalForce, ForceMode2D.Impulse);
     }
 

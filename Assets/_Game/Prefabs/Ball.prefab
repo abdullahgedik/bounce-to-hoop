@@ -417,9 +417,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a508fa8cfebcb9409a10b1ba93eb9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bouncy: {fileID: 6200000, guid: ed41b1eedcc935241b2567f60b4917a6, type: 2}
-  notBouncy: {fileID: 6200000, guid: 56391a184f92a1845a7bd5b13957b9b9, type: 2}
-  isSticky: 0
+  _bouncy: {fileID: 6200000, guid: ed41b1eedcc935241b2567f60b4917a6, type: 2}
+  _notBouncy: {fileID: 6200000, guid: 56391a184f92a1845a7bd5b13957b9b9, type: 2}
+  _isSticky: 0
 --- !u!114 &6698107749430058624
 MonoBehaviour:
   m_ObjectHideFlags: 0
