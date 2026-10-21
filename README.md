@@ -2,7 +2,7 @@
 
 A 2D physics platformer where you play as a basketball. Drag to aim, release to launch, and bounce your way through each level into the hoop.
 
-Originally made in a few hours for [Trijam](https://itch.io/jams), later revived and upgraded to Unity 6.
+Originally made in a few hours for [Trijam #262](https://itch.io/jam/trijam-262), later revived and upgraded to Unity 6.
 
 ## How to Play
 
@@ -16,8 +16,8 @@ Pull back like a slingshot: the further you drag, the stronger the throw (up to 
 ## Mechanics
 
 - **Hoop:** reach it to finish the level.
-- **Spikes & enemies:** deal damage; lose all your health and it's game over.
-- **Patrolling enemies:** walk back and forth along a fixed route.
+- **Spikes:** deal damage; lose all your health and it's game over.
+- **Enemies:** patrol back and forth along a fixed route and also deal damage. They can't be defeated, so time your throws to get past them.
 - **Portals:** teleport the ball to a linked portal.
 - **Sticky ball:** in some levels the ball turns green and sticks to surfaces instead of bouncing.
 
