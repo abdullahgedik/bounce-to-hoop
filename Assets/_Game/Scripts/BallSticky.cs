@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BallStatusSticky : MonoBehaviour
+public class BallSticky : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PhysicsMaterial2D bouncy;

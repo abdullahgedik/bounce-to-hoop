@@ -72752,15 +72752,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 613869648}
     - target: {fileID: 3675053685133918254, guid: 87865ff5d4ed2fc49999fbfbf5175fe2, type: 3}
-      propertyPath: pauseMenu
+      propertyPath: _pauseMenu
       value: 
       objectReference: {fileID: 825274036}
     - target: {fileID: 3675053685133918254, guid: 87865ff5d4ed2fc49999fbfbf5175fe2, type: 3}
-      propertyPath: gameOverMenu
+      propertyPath: _gameOverMenu
       value: 
       objectReference: {fileID: 1720206946}
     - target: {fileID: 3675053685133918254, guid: 87865ff5d4ed2fc49999fbfbf5175fe2, type: 3}
-      propertyPath: levelWonScreen
+      propertyPath: _levelWonScreen
       value: 
       objectReference: {fileID: 1269254554}
     - target: {fileID: 6180141620414003589, guid: 87865ff5d4ed2fc49999fbfbf5175fe2, type: 3}

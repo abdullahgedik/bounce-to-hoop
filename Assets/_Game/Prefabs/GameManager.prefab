@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894a9740122f292438126b054c4b90d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
-  gameOverMenu: {fileID: 0}
-  levelWonScreen: {fileID: 0}
+  _pauseMenu: {fileID: 0}
+  _gameOverMenu: {fileID: 0}
+  _levelWonScreen: {fileID: 0}
   player: {fileID: 0}

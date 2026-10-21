@@ -1270,7 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bfef031829d1414a93f0af94ce40f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 2031016441}
+  _destination: {fileID: 2031016441}
 --- !u!212 &865813094
 SpriteRenderer:
   serializedVersion: 3
@@ -4017,7 +4017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bfef031829d1414a93f0af94ce40f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 865813092}
+  _destination: {fileID: 865813092}
 --- !u!212 &2031016440
 SpriteRenderer:
   serializedVersion: 3
@@ -4425,15 +4425,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 613869648}
     - target: {fileID: 3675053685133918254, guid: 87865ff5d4ed2fc49999fbfbf5175fe2, type: 3}
-      propertyPath: pauseMenu
+      propertyPath: _pauseMenu
       value: 
       objectReference: {fileID: 825274036}
     - target: {fileID: 3675053685133918254, guid: 87865ff5d4ed2fc49999fbfbf5175fe2, type: 3}
-      propertyPath: gameOverMenu
+      propertyPath: _gameOverMenu
       value: 
       objectReference: {fileID: 1720206946}
     - target: {fileID: 3675053685133918254, guid: 87865ff5d4ed2fc49999fbfbf5175fe2, type: 3}
-      propertyPath: levelWonScreen
+      propertyPath: _levelWonScreen
       value: 
       objectReference: {fileID: 1269254554}
     - target: {fileID: 6180141620414003589, guid: 87865ff5d4ed2fc49999fbfbf5175fe2, type: 3}

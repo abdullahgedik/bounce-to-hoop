@@ -1,6 +1,5 @@
-using UnityEngine.Audio;
-using UnityEngine;
 using System;
+using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
@@ -21,7 +20,6 @@ public class AudioManager : MonoBehaviour
     {
         Play("Theme");
     }
-    // Update is called once per frame
     public void Play (string name)
     {
         Sound s = Array.Find(sounds, Sound => Sound.name == name);

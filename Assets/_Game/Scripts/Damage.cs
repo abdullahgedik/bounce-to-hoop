@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private int damage;
+    [SerializeField] private int _damage;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.TryGetComponent(out BallHealth ballHealth))
         {
-
-            collision.gameObject.GetComponent<Health>().TakeDamage(damage);
+            ballHealth.TakeDamage(_damage);
         }
     }
 }

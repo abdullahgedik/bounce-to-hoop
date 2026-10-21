@@ -400,11 +400,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bec169f03e86904daff7ae036472eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 7575613049954900348}
-  line: {fileID: 1615184025408426399}
-  dragLimit: 3
-  forceToAdd: 10
-  throwCooldown: 0.5
+  _rb: {fileID: 7575613049954900348}
+  _line: {fileID: 1615184025408426399}
+  _dragLimit: 3
+  _forceToAdd: 10
+  _throwCooldown: 0.5
 --- !u!114 &963559291125105471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,4 +432,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2ac51a710bfed4387c0828cf3a892c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  _maxHealth: 1
