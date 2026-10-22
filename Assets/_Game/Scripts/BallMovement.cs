@@ -20,6 +20,7 @@ public class BallMovement : MonoBehaviour
     private InputAction _throwAction;
     private InputAction _pointAction;
     private Camera _cam;
+    private Coroutine _throwCooldownRoutine;
     private bool _isGamePaused = false;
     private bool _isThrowable = true;
     private bool _isDragging;
@@ -56,6 +57,8 @@ public class BallMovement : MonoBehaviour
     private void OnDisable()
     {
         GameManager.OnPauseToggle -= GamePauseToggle;
+        if (_throwCooldownRoutine != null)
+            StopCoroutine(_throwCooldownRoutine);
     }
 
     private void Update()
@@ -72,7 +75,7 @@ public class BallMovement : MonoBehaviour
         if (_throwAction.WasReleasedThisFrame() && _isDragging)
         {
             DragEnd();
-            StartCoroutine(ThrowTimer());
+            _throwCooldownRoutine = StartCoroutine(ThrowTimer());
         }
     }
 

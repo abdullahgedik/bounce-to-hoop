@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: YKhanS and Radenial
+  companyName: Radenial & YKhanS
   productName: Bounce to the Hoop
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -40,7 +40,7 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: -1166169944, guid: cfda770d90409424f9750e98e431ece7, type: 3}
+  - logo: {fileID: 8446849018051096198, guid: 74c17313c1907a947bf2a37b26042800, type: 3}
     duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   defaultScreenWidth: 1920
@@ -304,7 +304,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: d66198074fff7f544ac0cd8ce177cf92, type: 3}
+      m_Icon: {fileID: 2800000, guid: 74c17313c1907a947bf2a37b26042800, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

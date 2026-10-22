@@ -1,12 +1,14 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D), typeof(SpriteRenderer))]
+[RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
 [RequireComponent(typeof(TrailRenderer), typeof(BallMovement))]
 public class BallSticky : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PhysicsMaterial2D _bouncy;
     [SerializeField] private PhysicsMaterial2D _notBouncy;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+
 
     [Header("Settings")]
     [SerializeField] private bool _isSticky;
@@ -15,7 +17,6 @@ public class BallSticky : MonoBehaviour
 
     private Rigidbody2D _rb;
     private CircleCollider2D _circleCollider;
-    private SpriteRenderer _spriteRenderer;
     private TrailRenderer _trailRenderer;
     private BallMovement _ballMovement;
 
@@ -32,7 +33,6 @@ public class BallSticky : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _circleCollider = GetComponent<CircleCollider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         _trailRenderer = GetComponent<TrailRenderer>();
         _ballMovement = GetComponent<BallMovement>();
 

@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
     private float _direction = 1;
     private float _patrolStartDirection;
     private Vector2 _patrolLocation;
+    private Coroutine _patrolRoutine;
 
     private void Start()
     {
@@ -18,7 +19,13 @@ public class EnemyMovement : MonoBehaviour
         _patrolLocation = transform.position;
         _patrolStartDirection = _direction;
 
-        StartCoroutine(ChangeDirection());
+        _patrolRoutine = StartCoroutine(ChangeDirection());
+    }
+
+    private void OnDisable()
+    {
+        if (_patrolRoutine != null)
+            StopCoroutine(_patrolRoutine);
     }
 
     private void FixedUpdate()

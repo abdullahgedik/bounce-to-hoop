@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene(sceneBuildIndex: 0);
+        SceneManager.LoadScene(0);
     }
 
     public void LevelWon()
