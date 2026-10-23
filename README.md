@@ -11,11 +11,11 @@ Originally made in a few hours for [Trijam #262](https://itch.io/jam/trijam-262)
 | Aim & launch | Click, drag back, release | Touch, drag back, release | — |
 | Pause | `Esc` | — | `Start` |
 
-Pull back like a slingshot: the further you drag, the stronger the throw (up to a limit). There is a short cooldown between throws.
+Pull back like a slingshot: the further you drag, the stronger the throw (up to a limit). A dotted line shows where the ball will fly. There is a short cooldown between throws.
 
 ## Mechanics
 
-- **Hoop:** reach it to finish the level.
+- **Hoop:** drop the ball through it from above to finish the level.
 - **Spikes:** deal damage; lose all your health and it's game over.
 - **Enemies:** patrol back and forth along a fixed route and also deal damage. They can't be defeated, so time your throws to get past them.
 - **Portals:** teleport the ball to a linked portal.
@@ -26,8 +26,9 @@ The game has 10 levels, plus a main menu and an end screen.
 ## Tech
 
 - **Unity** 6000.6.6f1
-- **URP** with the 2D Renderer
+- **URP** with the 2D Renderer and Pixel Perfect Camera
 - **Cinemachine 3** for the follow camera
+- **DOTween** for tweens
 - **Input System** with project-wide actions (`Gameplay`: Throw, Point, Pause)
 - **TextMesh Pro** (bundled with uGUI)
 
@@ -46,13 +47,14 @@ The game has 10 levels, plus a main menu and an end screen.
 Assets/
 ├── _Game/
 │   ├── Animations/
-│   ├── Audios/        # Music + simple audio manager
+│   ├── Audios/        # Music
 │   ├── Materials/     # 2D physics materials (bouncy / not bouncy)
 │   ├── Prefabs/       # Ball, Hoop, Enemy, Spike, Portal, ...
 │   ├── Scenes/        # Level_00 (menu) … Level_11 (end screen), Level_Test
 │   ├── Scripts/
-│   ├── Sprites/
-│   └── Tilemaps/
+│   ├── Sprites/       # Pixel-art sprites, tiles and sprite atlas
+│   └── Tilemaps/      # Brick rule tile (auto-tiling with slopes) and palette
+├── DOTween/
 ├── InputActions/      # Project-wide input actions
 └── Renderer/          # URP assets
 ```

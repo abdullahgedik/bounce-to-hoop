@@ -22,11 +22,9 @@ public class Hoop : MonoBehaviour
 
         Rigidbody2D ball = collision.attachedRigidbody;
 
-        // Where the ball was one step ago: a fast fall can already be past the rim line on the entering step
         float previousY = ball.position.y - ball.linearVelocity.y * Time.fixedDeltaTime;
         _wasAboveRim = previousY >= RimHeight;
 
-        // Coming up from under the hoop never counts, even if the ball falls back down through it
         _enteredFromBelow = !_wasAboveRim && ball.linearVelocity.y > 0f;
 
         CheckScore(ball);
@@ -46,7 +44,6 @@ public class Hoop : MonoBehaviour
             _enteredFromBelow = false;
     }
 
-    // Uses the rigidbody, not the transform: with interpolation the transform can lag a step behind
     private void CheckScore(Rigidbody2D ball)
     {
         if (_isScored || _enteredFromBelow)
@@ -54,7 +51,6 @@ public class Hoop : MonoBehaviour
 
         bool isAboveRim = ball.position.y >= RimHeight;
 
-        // Scores on the step the ball's center drops through the rim line between the rims
         if (_wasAboveRim && !isAboveRim && ball.linearVelocity.y < 0f && IsInsideRim(ball.position.x))
         {
             _isScored = true;
@@ -64,7 +60,6 @@ public class Hoop : MonoBehaviour
         _wasAboveRim = isAboveRim;
     }
 
-    // Order-independent, so mirrored hoops (scale x -1) work: their "left" rim is on the right
     private bool IsInsideRim(float x)
     {
         float min = Mathf.Min(_rimLeft.position.x, _rimRight.position.x);

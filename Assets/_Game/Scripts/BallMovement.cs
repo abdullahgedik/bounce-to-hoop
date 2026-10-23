@@ -102,8 +102,6 @@ public class BallMovement : MonoBehaviour
         _rb.AddForce(impulse, ForceMode2D.Impulse);
     }
 
-    // Drag measured on screen and converted to world units; both points use the same camera,
-    // so the camera moving during the drag doesn't change the throw
     private Vector2 GetDragVector()
     {
         Vector2 drag = ScreenToWorld(PointerScreenPosition) - ScreenToWorld(_dragStartScreen);
@@ -122,7 +120,6 @@ public class BallMovement : MonoBehaviour
         return position;
     }
 
-    // Runs after Cinemachine has moved the camera this frame, so the line sits exactly under the finger
     private void UpdateLine(ScriptableRenderContext context, Camera camera)
     {
         if (!_isDragging || camera != _cam)

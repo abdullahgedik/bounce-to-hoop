@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _gameOverMenu;
     [SerializeField] private GameObject _levelWonScreen;
 
+    [Header("Debug & Test")]
+    [SerializeField] private bool _isTestLevel = false;
+
     private bool _isGamePaused = false;
     private bool _ballIsDead = false;
     private bool _isLevelWon = false;
@@ -72,12 +75,40 @@ public class GameManager : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ReloadCurrentScene();
     }
 
     public void NextScene()
     {
+        if (IsTestLevel())
+        {
+            ReloadCurrentScene();
+            return;
+        }
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private bool IsTestLevel()
+    {
+        return _isTestLevel || SceneManager.GetActiveScene().buildIndex < 0;
+    }
+
+    private static void ReloadCurrentScene()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+
+#if UNITY_EDITOR
+        if (scene.buildIndex < 0)
+        {
+            UnityEditor.SceneManagement.EditorSceneManager.LoadSceneInPlayMode(
+                scene.path,
+                new LoadSceneParameters(LoadSceneMode.Single));
+            return;
+        }
+#endif
+
+        SceneManager.LoadScene(scene.buildIndex);
     }
 
     public void LoadMainMenu()
