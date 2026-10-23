@@ -967,17 +967,17 @@ MonoBehaviour:
   CameraDistance: 10
   DeadZoneDepth: 0
   Composition:
-    ScreenPosition: {x: 0, y: 0}
+    ScreenPosition: {x: 0, y: 0.1}
     DeadZone:
       Enabled: 1
-      Size: {x: 0.05, y: 0.08}
+      Size: {x: 0, y: 0.06}
     HardLimits:
       Enabled: 1
-      Size: {x: 0.8, y: 0.8}
+      Size: {x: 0.7, y: 0.7}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 1, z: 0}
-  Damping: {x: 1, y: 1, z: 1}
+  TargetOffset: {x: 0, y: 0, z: 0}
+  Damping: {x: 0, y: 0, z: 0}
   Lookahead:
     Enabled: 0
     Time: 0
@@ -9896,9 +9896,9 @@ CompositeCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 1
+  m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0.05
+  m_EdgeRadius: 0
   m_ColliderPaths:
   - m_Collider: {fileID: 1773723909}
     m_ColliderPaths:
@@ -9956,8 +9956,8 @@ CompositeCollider2D:
       - {x: 4, y: 2.9414213}
       - {x: 5, y: 1.9414213}
       - {x: 4.941421, y: -4}
-  m_VertexDistance: 0.1
-  m_OffsetDistance: 0.1
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.000005
   m_UseDelaunayMesh: 1
   m_CompositeGameObject: {fileID: 1773723905}
 --- !u!50 &1773723911
@@ -10320,9 +10320,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_AssetsPPU: 32
-  m_RefResolutionX: 1280
-  m_RefResolutionY: 720
-  m_CropFrame: 0
+  m_RefResolutionX: 640
+  m_RefResolutionY: 360
+  m_CropFrame: 2
   m_GridSnapping: 2
   m_FilterMode: 0
   m_UpscaleRT: 0

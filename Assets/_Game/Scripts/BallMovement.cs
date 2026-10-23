@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
     public event Action OnThrow;
+    public event Action<Vector2> OnAim;
+    public event Action OnAimEnd;
 
     [Header("References")]
     [SerializeField] private Rigidbody2D _rb;
@@ -25,16 +28,11 @@ public class BallMovement : MonoBehaviour
     private bool _isThrowable = true;
     private bool _isDragging;
 
+    // The drag starts where the player pressed on the screen, not at a point in the world,
+    // so the line stays under the finger while the camera follows the ball
+    private Vector2 _dragStartScreen;
 
-    private Vector3 MousePosition
-    {
-        get
-        {
-            Vector3 pos = _cam.ScreenToWorldPoint(_pointAction.ReadValue<Vector2>());
-            pos.z = 0f;
-            return pos;
-        }
-    }
+    private Vector2 PointerScreenPosition => _pointAction.ReadValue<Vector2>();
 
     private void Awake()
     {
@@ -52,11 +50,13 @@ public class BallMovement : MonoBehaviour
     private void OnEnable()
     {
         GameManager.OnPauseToggle += GamePauseToggle;
+        RenderPipelineManager.beginCameraRendering += UpdateLine;
     }
 
     private void OnDisable()
     {
         GameManager.OnPauseToggle -= GamePauseToggle;
+        RenderPipelineManager.beginCameraRendering -= UpdateLine;
         if (_throwCooldownRoutine != null)
             StopCoroutine(_throwCooldownRoutine);
     }
@@ -81,42 +81,57 @@ public class BallMovement : MonoBehaviour
 
     private void DragStart()
     {
-        _line.enabled = true;
         _isDragging = true;
-        _line.SetPosition(0, MousePosition);
+        _dragStartScreen = PointerScreenPosition;
     }
 
     private void Drag()
     {
-        Vector3 startPos = _line.GetPosition(0);
-        Vector3 currentPos = MousePosition;
-
-        Vector3 distance = currentPos - startPos;
-
-        if (distance.magnitude <= _dragLimit)
-        {
-            _line.SetPosition(1, currentPos);
-        }
-        else
-        {
-            Vector3 limitVector = startPos + (distance.normalized * _dragLimit);
-            _line.SetPosition(1, limitVector);
-        }
+        OnAim?.Invoke(GetThrowImpulse());
     }
 
     private void DragEnd()
     {
+        Vector2 impulse = GetThrowImpulse();
+
         _isDragging = false;
         _line.enabled = false;
 
-        Vector3 startPos = _line.GetPosition(0);
-        Vector3 currentPos = _line.GetPosition(1);
-
-        Vector3 distance = currentPos - startPos;
-        Vector3 finalForce = distance * _forceToAdd;
-
+        OnAimEnd?.Invoke();
         OnThrow?.Invoke();
-        _rb.AddForce(-finalForce, ForceMode2D.Impulse);
+        _rb.AddForce(impulse, ForceMode2D.Impulse);
+    }
+
+    // Drag measured on screen and converted to world units; both points use the same camera,
+    // so the camera moving during the drag doesn't change the throw
+    private Vector2 GetDragVector()
+    {
+        Vector2 drag = ScreenToWorld(PointerScreenPosition) - ScreenToWorld(_dragStartScreen);
+        return Vector2.ClampMagnitude(drag, _dragLimit);
+    }
+
+    private Vector2 GetThrowImpulse()
+    {
+        return -GetDragVector() * _forceToAdd;
+    }
+
+    private Vector3 ScreenToWorld(Vector2 screenPosition)
+    {
+        Vector3 position = _cam.ScreenToWorldPoint(screenPosition);
+        position.z = 0f;
+        return position;
+    }
+
+    // Runs after Cinemachine has moved the camera this frame, so the line sits exactly under the finger
+    private void UpdateLine(ScriptableRenderContext context, Camera camera)
+    {
+        if (!_isDragging || camera != _cam)
+            return;
+
+        Vector3 start = ScreenToWorld(_dragStartScreen);
+        _line.SetPosition(0, start);
+        _line.SetPosition(1, start + (Vector3)GetDragVector());
+        _line.enabled = true;
     }
 
     private IEnumerator ThrowTimer()
@@ -134,6 +149,7 @@ public class BallMovement : MonoBehaviour
         {
             _isDragging = false;
             _line.enabled = false;
+            OnAimEnd?.Invoke();
         }
     }
 
